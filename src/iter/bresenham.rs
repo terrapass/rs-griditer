@@ -187,6 +187,18 @@ mod tests {
         test_slope((30, 0), (15, 2));
     }
 
+    #[test]
+    #[should_panic(expected = "unsigned coord values must be small enough to be convertible to the corresponding signed type")]
+    fn large_unsigned_coord_panic() {
+        BresenhamIter::<u8>::new((250, 108), (0, 9));
+    }
+
+    #[test]
+    #[should_panic(expected = "overflow")]
+    fn large_signed_coord_diff_panic() {
+        BresenhamIter::<i8>::new((-120, 5), (120, 25));
+    }
+
     //
     // Test service
     //
