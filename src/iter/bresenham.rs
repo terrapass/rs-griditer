@@ -1,7 +1,7 @@
 use crate::Coord;
 
 //
-// pub struct BresenhamIterator
+// pub struct BresenhamIter
 //
 
 #[allow(clippy::module_name_repetitions)]
