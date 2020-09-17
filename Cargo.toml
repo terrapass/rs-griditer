@@ -1,0 +1,18 @@
+[package]
+name = "griditer"
+version = "0.1.0"
+authors = ["Taras Denysenko <terrapass93@gmail.com>"]
+edition = "2018"
+license = "MIT OR Apache-2.0"
+description = "Contains a couple of 2D grid based algoritms implemented as iterators."
+repository = "https://github.com/terrapass/rs-griditer"
+readme = "README.md"
+keywords = ["grid", "iterator", "bresenham", "perimeter", "tile"]
+categories = ["algorithms", "data-structures"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[badges]
+travis-ci = { repository = "terrapass/rs-griditer", branch = "master" }
