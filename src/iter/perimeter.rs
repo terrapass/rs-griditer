@@ -4,7 +4,7 @@ use crate::Coord;
 // pub struct PerimeterIter
 //
 
-/// Iterator that yields points at the perimeter of a rect, clockwise.
+/// Iterator that yields points at the perimeter of a rect on a grid, clockwise.
 #[allow(clippy::module_name_repetitions)]
 #[derive(Clone, Debug)]
 pub struct PerimeterIter<C> {
@@ -42,6 +42,15 @@ impl<C> PerimeterIter<C>
     // Interface
     //
 
+    /// Constructs `PerimeterIter` that will yield points on the perimeter
+    /// of the grid rect given by top-left corner coordinates and dimensions.
+    ///
+    /// `left` and `top` refer to the minimal rect coordinates along corresponding axes.
+    ///
+    /// The points are yielded without repetitions.  
+    /// If either of the dimensions is 0 the iterator won't yield any points.  
+    /// If width or height is 1, points along a single grid column or row respecively will be yielded.  
+    /// If both dimensions are 1, only `(left, top)` will be yielded.
     pub fn with_dimensions((left, top): (C, C), (width, height): (C, C)) -> Self {
         assert!(width >= C::ZERO && height >= C::ZERO, "width and height must be non-negative");
 
@@ -56,6 +65,14 @@ impl<C> PerimeterIter<C>
         }
     }
 
+    /// Constructs `PerimeterIter` that will yield points on the perimeter
+    /// of the grid rect given by top-left and bottom-right corner coordinates and dimensions.
+    ///
+    /// `left` and `top` must not be greater than `right` and `bottom` respectively.
+    ///
+    /// The points are yielded without repetitions.  
+    /// If both corners have a common coordinate, only points along a single grid column or row will be yielded.  
+    /// If both corners are equal, only `(left, top)` will be yielded.
     pub fn with_corners((left, top): (C, C), (right, bottom): (C, C)) -> Self {
         assert!(left <= right && top <= bottom);
 

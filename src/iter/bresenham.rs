@@ -4,6 +4,7 @@ use crate::Coord;
 // pub struct BresenhamIter
 //
 
+/// Iterator that uses Bresenham's algorithm to yield grid points on a segment between two given points.
 #[allow(clippy::module_name_repetitions)]
 #[derive(Clone, Debug)]
 pub struct BresenhamIter<C = isize>
@@ -62,6 +63,10 @@ impl<C> BresenhamIter<C>
     // Interface
     //
 
+    /// Constructs `BresenhamIter` that will yield points on the line between `start_point` and `end_point` in order.
+    ///
+    /// Endpoints are included. `start_point` will be the first iterator item, `end_point` will be the last one.
+    /// If both endpoints are equal, iterator will yield only one point.
     pub fn new(start_point: (C, C), end_point: (C, C)) -> Self {
         let delta_x = end_point.0.into_diff() - start_point.0.into_diff();
         let delta_y = end_point.1.into_diff() - start_point.1.into_diff();

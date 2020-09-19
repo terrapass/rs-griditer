@@ -15,11 +15,13 @@ use std::{
 // pub trait Coord
 //
 
+/// Trait for grid coordinates used by iterators. Implemented for every built-in integer type.
 pub trait Coord: Clone + Copy +
     Add<Output = Self> + Sub<Output = Self> + Rem<Output = Self> +
     AddAssign + SubAssign +
     PartialEq + Eq + PartialOrd + Ord + Debug
 {
+    /// Signed type corresponding to `Self`. 
     type Diff: Copy + Add<Output = Self::Diff> + Sub<Output = Self::Diff> + PartialOrd<Self::Diff>;
 
     const ZERO: Self;
