@@ -1,5 +1,5 @@
 pub mod bresenham;
-//pub mod perimeter;
+pub mod perimeter;
 
 #[cfg(test)]
 mod test_utils {

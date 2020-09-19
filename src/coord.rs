@@ -2,16 +2,24 @@ use std::{
     any::TypeId,
     ops::{
         Add,
-        Sub
+        AddAssign,
+        Sub,
+        SubAssign,
+        Rem
     },
-    convert::TryInto
+    convert::TryInto,
+    fmt::Debug
 };
 
 //
 // pub trait Coord
 //
 
-pub trait Coord: Clone + Copy + Add + PartialEq + Eq {
+pub trait Coord: Clone + Copy +
+    Add<Output = Self> + Sub<Output = Self> + Rem<Output = Self> +
+    AddAssign + SubAssign +
+    PartialEq + Eq + PartialOrd + Ord + Debug
+{
     type Diff: Copy + Add<Output = Self::Diff> + Sub<Output = Self::Diff> + PartialOrd<Self::Diff>;
 
     const ZERO: Self;
